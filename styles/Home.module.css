@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: height, 1s, ease-in;
 }
 
 .main {

@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from '../../styles/Home.module.css';
-import Head from 'next/head';
 import SignInButton from '../auth/SignInButton';
-import UserFilter from '../UserFilter';
 import { useTheme } from '@material-ui/core';
+import Head from 'next/head';
 
 const UnauthenticatedHome = () => {
     const theme = useTheme();
@@ -17,7 +16,7 @@ const UnauthenticatedHome = () => {
             <main className={styles.main}>
                 <h1
                     className={styles.title}
-                    style={{ color: theme.palette.secondary.main, margin: "2rem" }}
+                    style={{ color: theme.palette.secondary.main, margin: '2rem' }}
                 >
                     Valentine Letters
                 </h1>

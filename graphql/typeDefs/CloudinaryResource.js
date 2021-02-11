@@ -1,11 +1,6 @@
 import { gql } from 'apollo-server-micro';
 
 export default gql`
-    enum UrlPresets {
-        thumbnailSmall
-        thumbnailMedium
-        previewLarge
-    }
 
     type CloudinaryResource {
         id: String
@@ -17,6 +12,6 @@ export default gql`
         tags: [String!]!
 
         # Dynamic props
-        url(preset: UrlPresets!): String
+        url: String
     }
 `;

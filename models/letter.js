@@ -3,7 +3,7 @@ import mongoose from './mongoose';
 const Schema = mongoose.Schema;
 
 // A safeguard against people spamming the perspective api endpoint
-const MessageSchema = new Schema({
+const LetterSchema = new Schema({
     fromEmail: {
         type: String,
         required: false,
@@ -14,9 +14,9 @@ const MessageSchema = new Schema({
     },
     toEmail: String,
     message: String,
+    templateId: Schema.Types.ObjectId
 });
 
-const Message =
-    mongoose.models.Message || mongoose.model('Message', MessageSchema);
+const Letter = mongoose.models.Letter || mongoose.model('Letter', LetterSchema);
 
-export default Message;
+export default Letter;

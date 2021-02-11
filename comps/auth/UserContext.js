@@ -1,5 +1,6 @@
-import { createContext } from 'react';
+import React, { createContext } from 'react';
 import { gql, useQuery } from '@apollo/client';
+import UnauthenticatedHome from '../home/UnauthenticatedHome';
 
 const UserContext = createContext({ signedIn: false });
 
@@ -11,6 +12,15 @@ const QUERY = gql`
             lastName
             name
             email
+            lettersSent {
+                id
+                to {
+                    id
+                    name
+                    email
+                    grade
+                }
+            }
         }
     }
 `;
@@ -24,6 +34,10 @@ export const UserProvider = ({ children }) => {
         user.signedIn = true;
 
         Object.assign(user, data.authenticatedUser);
+    }
+
+    if (!user.signedIn) {
+        return <UnauthenticatedHome />;
     }
 
     return <UserContext.Provider value={user} children={children} />;

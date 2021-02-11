@@ -1,0 +1,17 @@
+.resultsContainer {
+    transition: max-height, 0.5s, ease-in;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.resultsContainer:hover {
+    max-height: 500px;
+}
+
+.resultsActivated {
+    height: 500px;
+}
+
+.resultsClosed {
+    height: 200px;
+}

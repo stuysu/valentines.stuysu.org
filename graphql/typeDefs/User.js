@@ -9,5 +9,6 @@ export default gql`
         name: String
         gradYear: Int
         grade: String
+        lettersSent: [Letter!]
     }
 `;

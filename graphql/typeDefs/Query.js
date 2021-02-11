@@ -7,5 +7,7 @@ export default gql`
         
         # Return the top 15 users that match the search keyword
         searchUsers(keyword: String!): [User]
+        
+        pictureTemplates: [PictureTemplate]
     }
 `;
