@@ -8,6 +8,7 @@
         "start": "next start"
     },
     "dependencies": {
+        "@apollo/client": "^3.3.9",
         "@google-cloud/vision": "^2.3.0",
         "apollo-server-micro": "^2.19.2",
         "axios": "^0.21.1",

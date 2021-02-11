@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import SignInButton from '../comps/SignInButton';
+import SignInButton from '../comps/auth/SignInButton';
 
 export default function Home() {
     return (

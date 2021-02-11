@@ -11,7 +11,6 @@ const UserSchema = new Schema({
     lastName: String,
     email: String,
     gradYear: Number,
-    googleSub: String,
     googleDriveAnonymityFileId: String,
 });
 
@@ -68,3 +67,4 @@ UserSchema.methods.getAnonymousId = async function (access_token) {
 const User = mongoose.models.User || mongoose.model('User', UserSchema);
 
 export default User;
+

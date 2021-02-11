@@ -1,12 +1,18 @@
 import GoogleLogin from 'react-google-login';
+import { gql, useMutation } from '@apollo/client';
+
+const LOGIN_MUTATION = gql`
+    mutation($accessToken: String!) {
+        login(accessToken: $accessToken)
+    }
+`;
 
 export default function SignInButton() {
-    const onSignIn = data => {
-        const { tokenId, accessToken } = data;
+    const [login, { loading }] = useMutation(LOGIN_MUTATION);
 
-        fetch(
-            `/api/storeSecret?access_token=${accessToken}&id_token=${tokenId}`
-        ).then(res => console.log(res.toString()));
+    const onSignIn = async data => {
+        const { accessToken } = data;
+        console.log((await login({ variables: { accessToken } })).data);
     };
 
     return (
