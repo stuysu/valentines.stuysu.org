@@ -1,5 +1,6 @@
 import GoogleLogin from 'react-google-login';
 import { gql, useMutation } from '@apollo/client';
+import { setAuthToken } from '../apollo/useApolloClient';
 
 const LOGIN_MUTATION = gql`
     mutation($accessToken: String!) {
@@ -12,7 +13,14 @@ export default function SignInButton() {
 
     const onSignIn = async data => {
         const { accessToken } = data;
-        console.log((await login({ variables: { accessToken } })).data);
+
+        try {
+            const { data } = await login({ variables: { accessToken } });
+            localStorage.setItem('auth-jwt', data.login);
+            setAuthToken(data.login);
+        } catch (er) {
+            alert(er.message);
+        }
     };
 
     return (
@@ -29,6 +37,7 @@ export default function SignInButton() {
             scope={
                 'https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/drive.appdata'
             }
+            disabled={loading}
         />
     );
 }

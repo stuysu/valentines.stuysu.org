@@ -8,7 +8,7 @@ export default (root, { keyword }, { authenticationRequired }) => {
     const words = keyword.split(/\s/g);
 
     const $and = words.map(word => {
-        const $regex = escapeStringRegexp(word);
+        const $regex = new RegExp(escapeStringRegexp(word), 'i');
 
         return {
             $or: [

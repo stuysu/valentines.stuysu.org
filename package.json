@@ -10,6 +10,8 @@
     "dependencies": {
         "@apollo/client": "^3.3.9",
         "@google-cloud/vision": "^2.3.0",
+        "@material-ui/core": "^4.11.3",
+        "@material-ui/icons": "^4.11.2",
         "apollo-server-micro": "^2.19.2",
         "axios": "^0.21.1",
         "cloudinary": "^1.24.0",
@@ -28,7 +30,7 @@
         "react-google-login": "^5.2.2"
     },
     "prettier": {
-        "printWidth": 80,
+        "printWidth": 100,
         "semi": true,
         "singleQuote": true,
         "jsxSingleQuote": true,

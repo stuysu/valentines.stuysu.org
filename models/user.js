@@ -22,6 +22,7 @@ UserSchema.methods.getAnonymousId = async function (access_token) {
         GOOGLE_CLIENT_ID,
         GOOGLE_CLIENT_SECRET
     );
+
     oAuth2Client.setCredentials({ access_token });
     const drive = google.drive({ version: 'v3', auth: oAuth2Client });
 
@@ -67,4 +68,3 @@ UserSchema.methods.getAnonymousId = async function (access_token) {
 const User = mongoose.models.User || mongoose.model('User', UserSchema);
 
 export default User;
-

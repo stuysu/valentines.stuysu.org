@@ -25,8 +25,9 @@ export default async (mutation, { accessToken }, { signedIn }) => {
         );
     }
 
-    const { getAnonymousId, id, email, firstName, lastName } = user;
-    const anonymousId = await getAnonymousId(accessToken);
+    const anonymousId = await user.getAnonymousId(accessToken);
+
+    const { id, email, firstName, lastName } = user;
 
     const tokenData = {
         user: {

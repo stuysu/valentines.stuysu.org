@@ -8,7 +8,7 @@ const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
     context: async ({ req }) => {
-        let user, signedIn;
+        let user, signedIn, anonymousId;
 
         let jwt =
             req.cookies['auth-jwt'] ||
@@ -20,10 +20,11 @@ const apolloServer = new ApolloServer({
         }
 
         if (jwt) {
-            const data = await getJWTData(jwt);
+            const data = await getJWTData(jwt)
 
             if (data) {
                 user = await User.findById(data.user.id);
+                anonymousId = data.user.anonymousId;
             }
 
             signedIn = Boolean(user);
@@ -41,6 +42,7 @@ const apolloServer = new ApolloServer({
             user,
             signedIn,
             authenticationRequired,
+            anonymousId,
         };
     },
     playground: {

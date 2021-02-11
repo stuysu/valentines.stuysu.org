@@ -28,7 +28,7 @@ const useApolloClient = () => {
         cache,
         uri: '/api/graphql',
         headers: {
-            'auth-jwt': token ? 'Bearer ' + token : '',
+            authorization: token ? 'Bearer ' + token : '',
         },
     });
 };
