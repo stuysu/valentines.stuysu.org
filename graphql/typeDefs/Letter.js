@@ -8,5 +8,6 @@ export default gql`
         public: Boolean
         to: User
         message: String
+        template: PictureTemplate
     }
 `;

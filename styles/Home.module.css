@@ -121,3 +121,12 @@
         flex-direction: column;
     }
 }
+
+.fit {
+    background-size: contain !important;
+    box-shadow: 2px 3px 12px 6px #807373b3;
+}
+
+.fit:hover {
+    box-shadow: 2px 3px 15px 6px #807373b3;;
+}

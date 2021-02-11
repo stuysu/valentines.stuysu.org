@@ -1,4 +1,5 @@
 import mongoose from './mongoose';
+import findOneLoaderFactory from '../utils/dataloaders/findOneLoaderFactory';
 
 const Schema = mongoose.Schema;
 
@@ -16,6 +17,8 @@ const PictureTemplateSchema = new Schema({
     backgroundColor: String,
     textColor: String
 });
+
+PictureTemplateSchema.statics.idLoader = findOneLoaderFactory("PictureTemplate");
 
 const PictureTemplate =
     mongoose.models.PictureTemplate || mongoose.model('PictureTemplate', PictureTemplateSchema);

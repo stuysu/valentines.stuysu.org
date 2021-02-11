@@ -5,12 +5,11 @@ import { useEffect, useState } from 'react';
 const AuthTokenEmitter = new EventEmitter();
 
 export const setAuthToken = token => AuthTokenEmitter.emit('setToken', token);
+export const cache = new InMemoryCache();
 
 const useApolloClient = () => {
     const [token, setToken] = useState(
-        typeof window !== 'undefined'
-            ? window?.localStorage?.getItem('auth-jwt')
-            : null
+        typeof window !== 'undefined' ? window?.localStorage?.getItem('auth-jwt') : null
     );
 
     useEffect(() => {
@@ -21,8 +20,6 @@ const useApolloClient = () => {
             return () => AuthTokenEmitter.removeListener('setToken', callback);
         }
     });
-
-    const cache = new InMemoryCache();
 
     return new ApolloClient({
         cache,

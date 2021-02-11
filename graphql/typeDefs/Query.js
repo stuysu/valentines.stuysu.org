@@ -9,5 +9,9 @@ export default gql`
         searchUsers(keyword: String!): [User]
         
         pictureTemplates: [PictureTemplate]
+        
+        analyzeMessage(message: String!): RiskAnalysis
+        
+        userById(id: ObjectId!): User
     }
 `;

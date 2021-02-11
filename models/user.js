@@ -15,13 +15,11 @@ const UserSchema = new Schema({
 });
 
 UserSchema.statics.idLoader = findOneLoaderFactory('User');
+UserSchema.statics.emailLoader = findOneLoaderFactory('User', 'email');
 UserSchema.statics.findByEmail = email => User.findOne({ email });
 
 UserSchema.methods.getAnonymousId = async function (access_token) {
-    const oAuth2Client = new google.auth.OAuth2(
-        GOOGLE_CLIENT_ID,
-        GOOGLE_CLIENT_SECRET
-    );
+    const oAuth2Client = new google.auth.OAuth2(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET);
 
     oAuth2Client.setCredentials({ access_token });
     const drive = google.drive({ version: 'v3', auth: oAuth2Client });

@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
 import Button from '@material-ui/core/Button';
-import { useTheme } from '@material-ui/core';
+import { Grid, useTheme } from '@material-ui/core';
 
 export default function Home() {
     const user = useContext(UserContext);
@@ -44,6 +44,33 @@ export default function Home() {
                         Send a Letter
                     </Button>
                 </Link>
+                <br />
+                <br />
+
+                {Boolean(user.lettersSent?.length) && (
+                    <>
+                        <h2>Letters you've written:</h2>
+                        <Grid container>
+                            {user.lettersSent.map(letter => (
+                                <Grid
+                                    xs={4}
+                                    style={{
+                                        padding: '2rem',
+                                        borderRadius: 10,
+                                        border: `1px solid rgba(0, 0, 0, 0.1)`,
+                                    }}
+                                >
+                                    <p>To: {letter.to.name}</p>
+                                    <Link href={'/write-to/' + letter.to.id}>
+                                        <Button variant={'outlined'} color={'secondary'}>
+                                            Edit Letter
+                                        </Button>
+                                    </Link>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </>
+                )}
             </main>
         </div>
     );

@@ -16,7 +16,7 @@ ApiLimitSchema.statics.userHasUsedInLastMinute = async email => {
     const model = mongoose.model('ApiLimit');
     // As a safeguard to preserve anonymity, delete expired rows
     await model.deleteMany({
-        expires: {
+        expiresAt: {
             $lt: now,
         },
     });
@@ -32,7 +32,7 @@ ApiLimitSchema.statics.recordApiUse = async email => {
     return mongoose.model('ApiLimit').create({
         email,
         usedAt: now,
-        expires: oneMinuteFromNow,
+        expiresAt: oneMinuteFromNow,
     });
 };
 

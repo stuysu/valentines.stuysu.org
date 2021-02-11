@@ -17,26 +17,19 @@ const PerspectiveResultSchema = new Schema({
     },
 });
 
+PerspectiveResultSchema.statics.getCachedAnalysis = message => {
+    const messageHash = sha256(message);
+    const model = mongoose.model('PerspectiveResult');
+    return model.findOne({ messageHash });
+};
+
 // If it hasn't been at least a minute since the last time the user tried to use
 // the endpoint, return true. Else return false.
 PerspectiveResultSchema.statics.getAnalysis = async message => {
     const messageHash = sha256(message);
-
     const model = mongoose.model('PerspectiveResult');
-    const cachedResults = await model.findOne({ messageHash });
-
-    if (cachedResults) {
-        return cachedResults;
-    }
-
     const riskScores = await analyzeMessage(message);
-    const fields = [
-        'attack',
-        'threat',
-        'insult',
-        'sexuallyExplicit',
-        'toxicity',
-    ];
+    const fields = ['attack', 'threat', 'insult', 'sexuallyExplicit', 'toxicity'];
 
     const isSafe = fields.every(field => riskScores[field] < 0.95);
 
