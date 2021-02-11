@@ -17,7 +17,7 @@ export default function SignInButton() {
         try {
             const { data } = await login({ variables: { accessToken } });
             localStorage.setItem('auth-jwt', data.login);
-            setAuthToken(data.login);
+            window.location.reload();
         } catch (er) {
             alert(er.message);
         }
