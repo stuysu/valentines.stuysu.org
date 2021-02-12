@@ -20,6 +20,7 @@ const QUERY = gql`
                     email
                     grade
                 }
+                anonymous
             }
         }
     }

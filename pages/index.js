@@ -46,7 +46,6 @@ export default function Home() {
                 </Link>
                 <br />
 
-
                 {Boolean(user.lettersSent?.length) && (
                     <>
                         <h2>Letters you've written:</h2>
@@ -71,7 +70,15 @@ export default function Home() {
                                             border: `1px solid rgba(0, 0, 0, 0.1)`,
                                         }}
                                     >
-                                        <p>To: {letter.to.name}</p>
+                                        <p>
+                                            To: {letter.to.name}
+                                            <br />
+                                            <span style={{ color: 'grey' }}>
+                                                {letter.anonymous
+                                                    ? '(anonymous)'
+                                                    : '(identity will be shared)'}
+                                            </span>
+                                        </p>
                                         <Link href={'/write-to/' + letter.to.id}>
                                             <Button variant={'outlined'} color={'secondary'}>
                                                 Edit Letter
@@ -83,7 +90,6 @@ export default function Home() {
                         </Grid>
                     </>
                 )}
-
 
                 <div style={{ margin: '1rem', textAlign: 'center' }}>
                     {window.localStorage.getItem('backgroundDisabled') === 'true' ? (

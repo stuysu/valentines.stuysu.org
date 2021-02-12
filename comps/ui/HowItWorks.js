@@ -102,7 +102,8 @@ const HowItWorks = () => {
                             <p>
                                 Letters addressed to individuals will be available to them at noon
                                 on Valentine's day. You may edit any letters you send out up until
-                                then.
+                                then. You'll also have the opportunity to leave a thank you message
+                                for anyone who sent you a letter.
                             </p>
                         }
                     />
