@@ -3,6 +3,7 @@ import styles from '../../styles/Home.module.css';
 import SignInButton from '../auth/SignInButton';
 import { useTheme } from '@material-ui/core';
 import Head from 'next/head';
+import HowItWorks from '../ui/HowItWorks';
 
 const UnauthenticatedHome = () => {
     const theme = useTheme();
@@ -20,7 +21,9 @@ const UnauthenticatedHome = () => {
                 >
                     Valentine Letters
                 </h1>
+                <HowItWorks />
                 <SignInButton />
+
             </main>
         </div>
     );

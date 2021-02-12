@@ -26,13 +26,13 @@ ApiLimitSchema.statics.userHasUsedInLastMinute = async email => {
 
 ApiLimitSchema.statics.recordApiUse = async email => {
     const now = new Date();
-    const oneMinute = 1000 * 60;
-    const oneMinuteFromNow = new Date(now.getTime() + oneMinute);
+    const thirtySeconds = 1000 * 30;
+    const thirtySecondsFromNow = new Date(now.getTime() + thirtySeconds);
 
     return mongoose.model('ApiLimit').create({
         email,
         usedAt: now,
-        expiresAt: oneMinuteFromNow,
+        expiresAt: thirtySecondsFromNow,
     });
 };
 

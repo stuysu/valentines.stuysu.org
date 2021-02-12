@@ -66,7 +66,12 @@ const UserFilter = () => {
                             <ListItem>
                                 <ListItemText
                                     primary={user.name}
-                                    secondary={`${user.email} (${user.grade}th grade)`}
+                                    secondary={
+                                        <>
+                                            {user.email}
+                                            <br />{user.grade}th grade
+                                        </>
+                                    }
                                 />
                                 <ListItemSecondaryAction>
                                     <Link href={'/write-to/' + user.id}>
@@ -78,7 +83,7 @@ const UserFilter = () => {
                                                 color={'primary'}
                                                 variant={'outlined'}
                                             >
-                                                Edit Letter{' '}
+                                                Edit{' '}
                                             </Button>
                                         ) : (
                                             <Button
@@ -86,7 +91,7 @@ const UserFilter = () => {
                                                 color={'secondary'}
                                                 variant={'outlined'}
                                             >
-                                                Write Letter
+                                                Write
                                             </Button>
                                         )}
                                     </Link>

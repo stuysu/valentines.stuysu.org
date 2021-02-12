@@ -4,7 +4,11 @@ const Backdrop = () => {
     const ref = createRef();
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && ref.current) {
+        if (
+            typeof window !== 'undefined' &&
+            window.localStorage.getItem('backgroundDisabled') !== 'true' &&
+            ref.current
+        ) {
             window.VANTA.BIRDS({
                 el: ref.current,
                 mouseControls: true,

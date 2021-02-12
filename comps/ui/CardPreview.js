@@ -41,6 +41,10 @@ const CardPreview = ({ variant, offset, textColor, backgroundColor, url, message
     if (variant === 'flip') {
         return (
             <>
+                <p style={{ textAlign: 'center' }}>
+                    This card is double-sided. Click on it to see the other side.
+                </p>
+                <br />
                 <ReactCardFlip isFlipped={flipped} flipDirection='vertical'>
                     <div
                         style={{
@@ -75,10 +79,7 @@ const CardPreview = ({ variant, offset, textColor, backgroundColor, url, message
                         </div>
                     </div>
                 </ReactCardFlip>
-                <br/>
-                <p style={{ textAlign: 'center' }}>
-                    This card is double-sided. Click on it to see the other side.
-                </p>
+                <br />
             </>
         );
     }

@@ -17,7 +17,7 @@ export default async (
 
         if (frequentUse) {
             throw new ForbiddenError(
-                'You need to wait at least a minute after analyzing a message before you can analyze another one.'
+                'You need to wait at least thirty seconds after each save attempt.'
             );
         }
 
@@ -28,7 +28,7 @@ export default async (
 
     if (!analysis.isSafe) {
         throw new ForbiddenError(
-            'Your message was flagged as having possible threatening or toxic language. Please change if before continuing.'
+            'Your message was flagged as having possible threatening or toxic language. Please change it before continuing.'
         );
     }
 
