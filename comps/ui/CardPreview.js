@@ -12,6 +12,7 @@ const CardPreview = ({ variant, offset, textColor, backgroundColor, url, message
                 style={{
                     width: '95vw',
                     maxWidth: 400,
+                    overflowWrap: 'break-word',
                     height: `calc(95vw * 1.25)`,
                     maxHeight: 500,
                     background: `url(${url})`,
@@ -66,6 +67,7 @@ const CardPreview = ({ variant, offset, textColor, backgroundColor, url, message
                             height: `calc(95vw * 1.25)`,
                             maxHeight: 500,
                             background: backgroundColor,
+                            overflowWrap: 'break-word',
                         }}
                         className={styles.fit}
                         onClick={() => setFlipped(!flipped)}
