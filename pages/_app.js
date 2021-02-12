@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
                 />
                 <meta
                     property={'og:description'}
-                    content={"Send Valentin's day letters to your friends, even anonymously!"}
+                    content={"Send Valentine's day letters to your friends, even anonymously!"}
                 />
             </Head>
             <Backdrop />
