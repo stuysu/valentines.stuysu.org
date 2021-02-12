@@ -25,7 +25,7 @@ const Backdrop = () => {
                 separation: 100.0,
                 alignment: 1.0,
                 cohesion: 1.0,
-                quantity: 3,
+                quantity: window.innerWidth > 800 ? 3 : 2,
             });
         }
     });
