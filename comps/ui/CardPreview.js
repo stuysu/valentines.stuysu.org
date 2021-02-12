@@ -72,7 +72,7 @@ const CardPreview = ({ variant, offset, textColor, backgroundColor, url, message
                         className={styles.fit}
                         onClick={() => setFlipped(!flipped)}
                     >
-                        <div style={{ padding: '10%', height: '90%', color: textColor }}>
+                        <div style={{ padding: '10%', height: '100%', color: textColor }}>
                             <div style={{ width: '100%', height: '100%', overflowY: 'auto' }}>
                                 {message.split('\n').map((line, index) => (
                                     <p key={index}>{line}</p>
