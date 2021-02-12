@@ -42,12 +42,12 @@ export default async (
         const now = new Date();
         const numCreatedInLastHour = await Letter.countDocuments({
             $or: [{ fromAnonymousId: anonymousId }, { fromEmail: user.email }],
-            createdAt: { $gt: new Date(now.getTime() - 60 * 60 * 1000) },
+            createdAt: { $gt: new Date(now.getTime() - 30 * 60 * 1000) },
         });
 
-        if (numCreatedInLastHour >= 10) {
+        if (numCreatedInLastHour >= 20) {
             throw new ForbiddenError(
-                'You are only allowed to create 10 new letters per hour. Please wait some time before trying again.'
+                'You are only allowed to create 20 new letters per thirty minutes. Please wait some time before trying again.'
             );
         }
 

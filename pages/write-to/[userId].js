@@ -215,7 +215,7 @@ const WriteToUser = () => {
                             })
                     }
                 >
-                    Save Letter
+                    {data?.userById?.letterFromAuthenticatedUser ? 'Save' : 'Submit'} Letter
                 </Button>
 
                 <br />
