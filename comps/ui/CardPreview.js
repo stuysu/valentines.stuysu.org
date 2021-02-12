@@ -45,7 +45,7 @@ const CardPreview = ({ variant, offset, textColor, backgroundColor, url, message
                     This card is double-sided. Click on it to see the other side.
                 </p>
                 <br />
-                <ReactCardFlip isFlipped={flipped} flipDirection='vertical'>
+                <ReactCardFlip isFlipped={flipped} flipDirection='horizontal'>
                     <div
                         style={{
                             width: '95vw',
