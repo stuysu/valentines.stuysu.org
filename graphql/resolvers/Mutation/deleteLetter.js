@@ -2,6 +2,9 @@ import Letter from '../../../models/letter';
 import { ForbiddenError } from 'apollo-server-micro';
 
 export default async (root, { letterId }, { authenticationRequired, user, anonymousId }) => {
+    authenticationRequired();
+    throw new ForbiddenError('Changes to letters are no longer allowed');
+
     const letter = await Letter.findById(letterId);
 
     if (!letter) {

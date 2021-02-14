@@ -11,6 +11,8 @@ export default gql`
             templateId: ObjectId!
         ): Letter
         
+        sendThankYouMessage(message: String!, letterId: ObjectId!): Letter
+        
         deleteLetter(letterId: ObjectId!): Boolean
     }
 `;

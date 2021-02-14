@@ -10,6 +10,8 @@ export default async (
 ) => {
     authenticationRequired();
 
+    throw new ForbiddenError('Changes to letters are no longer allowed.');
+
     let analysis = await PerspectiveResult.getCachedAnalysis(message);
 
     if (!analysis) {

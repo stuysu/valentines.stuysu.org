@@ -12,11 +12,40 @@ const QUERY = gql`
             lastName
             name
             email
+            lettersReceived {
+                id
+                anonymous
+                message
+                from {
+                    id
+                    email
+                    name
+                }
+                thankYouMessage
+                template {
+                    id
+                    offset {
+                        top
+                        left
+                        right
+                        bottom
+                    }
+                    textColor
+                    backgroundColor
+                    variant
+                    resource {
+                        url
+                    }
+                }
+            }
+            
             lettersSent {
                 id
+                thankYouMessage
                 to {
                     id
                     name
+                    firstName
                     email
                     grade
                 }

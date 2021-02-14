@@ -17,6 +17,7 @@ const LetterSchema = new Schema({
     anonymous: Boolean,
     toEmail: String,
     message: String,
+    thankYouMessage: String,
     templateId: Schema.Types.ObjectId,
     createdAt: Date
 });

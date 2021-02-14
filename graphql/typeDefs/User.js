@@ -10,6 +10,7 @@ export default gql`
         gradYear: Int
         grade: String
         lettersSent: [Letter!]
+        lettersReceived: [Letter!]
         
         # If the user that's signed in sent this user a letter, then this field will have that
         letterFromAuthenticatedUser: Letter

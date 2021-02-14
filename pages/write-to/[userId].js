@@ -25,6 +25,7 @@ const USER_QUERY = gql`
                 id
                 anonymous
                 message
+                thankYouMessage
                 template {
                     id
                     offset {
@@ -247,4 +248,86 @@ const WriteToUser = () => {
     );
 };
 
-export default WriteToUser;
+const ViewMessage = () => {
+    const router = useRouter();
+    const { data, loading, error } = useQuery(USER_QUERY, {
+        variables: { userId: router.query.userId },
+    });
+    const theme = useTheme();
+
+    if (loading) {
+        return (
+            <div className={styles.container}>
+                <main className={styles.main}>
+                    <CircularProgress />
+                </main>
+            </div>
+        );
+    }
+
+    if ((!loading && error) || (!loading && !data?.userById)) {
+        return (
+            <div className={styles.container}>
+                <main className={styles.main}>
+                    <h1 style={{ color: theme.palette.secondary.main }}>
+                        There's no user with that id.
+                    </h1>
+                    <Link href={'/'}>
+                        <Button variant={'outlined'}>Back To Home</Button>
+                    </Link>
+                </main>
+            </div>
+        );
+    }
+
+    if (!data?.userById?.letterFromAuthenticatedUser) {
+        return (
+            <div className={styles.container}>
+                <main className={styles.main}>
+                    <Link href={'/write-to'}>
+                        <Button variant={'outlined'}>
+                            <ArrowBackIos />
+                            Back To Search
+                        </Button>
+                    </Link>
+                    <h1 style={{ color: theme.palette.secondary.main }}>
+                        You haven't send a letter to this person
+                    </h1>
+                </main>
+            </div>
+        );
+    }
+
+    const letter = data?.userById?.letterFromAuthenticatedUser;
+    return (
+        <div className={styles.container}>
+            <main className={styles.main}>
+                <Link href={'/'}>
+                    <Button variant={'outlined'}>
+                        <ArrowBackIos />
+                        Back To Home
+                    </Button>
+                </Link>
+                <h1 style={{ color: theme.palette.secondary.main }}>
+                    Your Letter To: {data.userById.name}
+                </h1>
+
+                <CardPreview
+                    message={letter.message}
+                    url={letter.template.resource.url}
+                    {...letter.template}
+                />
+                <br />
+                <br />
+                {letter.thankYouMessage && (
+                    <>
+                        <h3>Asma said thanks:</h3>
+                        <p>{letter.thankYouMessage}</p>
+                    </>
+                )}
+            </main>
+        </div>
+    );
+};
+
+export default ViewMessage;
