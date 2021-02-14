@@ -41,6 +41,9 @@ const USER_QUERY = gql`
                         url
                     }
                 }
+                to {
+                    firstName
+                }
             }
         }
         pictureTemplates {
@@ -321,7 +324,7 @@ const ViewMessage = () => {
                 <br />
                 {letter.thankYouMessage && (
                     <>
-                        <h3>Asma said thanks:</h3>
+                        <h3>{letter.to.firstName} said thanks:</h3>
                         <p>{letter.thankYouMessage}</p>
                     </>
                 )}
