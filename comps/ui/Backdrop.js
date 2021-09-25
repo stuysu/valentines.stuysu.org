@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 
 const Backdrop = () => {
     const ref = createRef();
@@ -7,8 +7,11 @@ const Backdrop = () => {
         if (
             typeof window !== 'undefined' &&
             window.localStorage.getItem('backgroundDisabled') !== 'true' &&
-            ref.current
+            ref.current &&
+            ! window.backdropInitialized
         ) {
+            window.backdropInitialized = true;
+            
             window.VANTA.BIRDS({
                 el: ref.current,
                 mouseControls: true,
