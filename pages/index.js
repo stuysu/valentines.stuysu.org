@@ -60,83 +60,90 @@ export default function Home() {
                 </p>
 
                 <br />
-                <h2>Letters You've received</h2>
-                <CardPreview
-                    message={letter.message}
-                    url={letter.template.resource.url}
-                    {...letter.template}
-                />
-                <br />
+                {Boolean(letter) ? (<>
+                        <h2>Letters You've received</h2>
+                        <CardPreview
+                            message={letter.message}
+                            url={letter.template.resource.url}
+                            {...letter.template}
+                        />
+                        <br />
 
-                <br />
-                <Grid container justify={'center'} alignContent={'center'} alignItems={'center'}>
-                    <Grid xs={2} style={{ textAlign: 'center' }}>
-                        {letterPointer > 0 && (
-                            <IconButton onClick={() => setLetterPointer(letterPointer - 1)}>
-                                <ArrowBackIos />
-                            </IconButton>
+                        <br />
+                        <Grid container justify={'center'} alignContent={'center'} alignItems={'center'}>
+                            <Grid xs={2} style={{ textAlign: 'center' }}>
+                                {letterPointer > 0 && (
+                                    <IconButton onClick={() => setLetterPointer(letterPointer - 1)}>
+                                        <ArrowBackIos />
+                                    </IconButton>
+                                )}
+                            </Grid>
+
+                            <Grid xs={4} style={{ textAlign: 'center' }}>
+                                Letter {letterPointer + 1} of {user.lettersReceived.length}
+                            </Grid>
+                            <Grid xs={2} style={{ textAlign: 'center' }}>
+                                {letterPointer < user.lettersReceived.length - 1 && (
+                                    <IconButton onClick={() => setLetterPointer(letterPointer + 1)}>
+                                        <ArrowForwardIos />
+                                    </IconButton>
+                                )}
+                            </Grid>
+                        </Grid>
+
+                        <br />
+                        {letter.anonymous && <p>From: Anonymous</p>}
+                        {letter.from && (
+                            <p>
+                                From {letter.from.name} - {letter.from.email}
+                            </p>
                         )}
-                    </Grid>
 
-                    <Grid xs={4} style={{ textAlign: 'center' }}>
-                        Letter {letterPointer + 1} of {user.lettersReceived.length}
-                    </Grid>
-                    <Grid xs={2} style={{ textAlign: 'center' }}>
-                        {letterPointer < user.lettersReceived.length - 1 && (
-                            <IconButton onClick={() => setLetterPointer(letterPointer + 1)}>
-                                <ArrowForwardIos />
-                            </IconButton>
-                        )}
-                    </Grid>
-                </Grid>
-
-                <br />
-                {letter.anonymous && <p>From: Anonymous</p>}
-                {letter.from && (
-                    <p>
-                        From {letter.from.name} - {letter.from.email}
-                    </p>
+                        <TextField
+                            multiline
+                            value={thanksMessage}
+                            onChange={ev => setThanksMessage(ev.target.value)}
+                            variant={'outlined'}
+                            color={'primary'}
+                            label={'Leave a thank you message'}
+                            helperText={
+                                <>
+                                    If the sender is anonymous, they won't be notified when you leave a
+                                    thank you message. <br />
+                                    They'll only see it if they open the site after you leave your message.
+                                </>
+                            }
+                            rows={3}
+                        />
+                        <Button
+                            variant={'contained'}
+                            color={'primary'}
+                            onClick={() =>
+                                sendThanks({
+                                    variables: {
+                                        message: thanksMessage,
+                                        letterId: letter.id,
+                                    },
+                                })
+                                    .then(() => {
+                                        alert(
+                                            'Your thank you message has been sent! If the letter was not anonymous, the person will receive an email letting them know to check :)'
+                                        );
+                                        user.refetch();
+                                    })
+                                    .catch(er => alert(er.message))
+                            }
+                        >
+                            Send Message
+                        </Button>
+                        <br />
+                        <br />
+                    </>
+                ): (
+                    <h2>
+                        No letters yet...
+                    <h2 />
                 )}
-
-                <TextField
-                    multiline
-                    value={thanksMessage}
-                    onChange={ev => setThanksMessage(ev.target.value)}
-                    variant={'outlined'}
-                    color={'primary'}
-                    label={'Leave a thank you message'}
-                    helperText={
-                        <>
-                            If the sender is anonymous, they won't be notified when you leave a
-                            thank you message. <br />
-                            They'll only see it if they open the site after you leave your message.
-                        </>
-                    }
-                    rows={3}
-                />
-                <Button
-                    variant={'contained'}
-                    color={'primary'}
-                    onClick={() =>
-                        sendThanks({
-                            variables: {
-                                message: thanksMessage,
-                                letterId: letter.id,
-                            },
-                        })
-                            .then(() => {
-                                alert(
-                                    'Your thank you message has been sent! If the letter was not anonymous, the person will receive an email letting them know to check :)'
-                                );
-                                user.refetch();
-                            })
-                            .catch(er => alert(er.message))
-                    }
-                >
-                    Send Message
-                </Button>
-                <br />
-                <br />
                 {Boolean(user.lettersSent?.length) && (
                     <>
                         <h2>Letters you've written:</h2>
