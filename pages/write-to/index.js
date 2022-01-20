@@ -10,8 +10,6 @@ const WriteTo = () => {
     const theme = useTheme();
     const router = useRouter();
 
-    useEffect(() => router.push('/'));
-
     return (
         <div className={styles.container} style={{ minHeight: '100vh' }}>
             <main className={styles.main}>
