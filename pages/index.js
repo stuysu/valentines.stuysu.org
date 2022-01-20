@@ -142,7 +142,7 @@ export default function Home() {
                 ): (
                     <h2>
                         No letters yet...
-                    <h2 />
+                    </h2>
                 )}
                 {Boolean(user.lettersSent?.length) && (
                     <>
