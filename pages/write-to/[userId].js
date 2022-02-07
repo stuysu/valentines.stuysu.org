@@ -286,7 +286,7 @@ const ViewMessage = () => {
     if (!data?.userById?.letterFromAuthenticatedUser) {
         return (
             <div className={styles.container}>
-                <main className={styles.main}>
+                <main className={styles.main}>  
                     <Link href={'/write-to'}>
                         <Button variant={'outlined'}>
                             <ArrowBackIos />
@@ -294,7 +294,7 @@ const ViewMessage = () => {
                         </Button>
                     </Link>
                     <h1 style={{ color: theme.palette.secondary.main }}>
-                        You haven't send a letter to this person
+                        You haven't sent a letter to this person
                     </h1>
                 </main>
             </div>
