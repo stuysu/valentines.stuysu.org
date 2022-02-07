@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { gql, useMutation, useQuery } from '@apollo/client';
-import styles from './../../styles/Home.module.css';
+import {gql, useMutation, useQuery} from '@apollo/client';
 import {
-    CircularProgress,
-    FormControlLabel,
-    Grid,
-    Switch,
-    TextField,
-    useTheme,
+  CircularProgress,
+  FormControlLabel,
+  Grid,
+  Switch,
+  TextField,
+  useTheme,
 } from '@material-ui/core';
-import Link from 'next/link';
 import Button from '@material-ui/core/Button';
-import { ArrowBackIos } from '@material-ui/icons';
+import {ArrowBackIos} from '@material-ui/icons';
+import Link from 'next/link';
+import {useRouter} from 'next/router';
+import React, {useEffect, useState} from 'react';
+
 import CardPreview from '../../comps/ui/CardPreview';
+
+import styles from './../../styles/Home.module.css';
 
 const USER_QUERY = gql`
     query($userId: ObjectId!) {
