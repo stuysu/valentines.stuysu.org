@@ -1,13 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
-import UserContext from '../comps/auth/UserContext';
-import styles from '../styles/Home.module.css';
+import {gql, useMutation} from '@apollo/client';
+import {
+  Grid,
+  IconButton,
+  Link as StyledLink,
+  TextField,
+  useTheme
+} from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import {ArrowBackIos, ArrowForwardIos, MailOutline} from '@material-ui/icons';
 import Head from 'next/head';
 import Link from 'next/link';
-import Button from '@material-ui/core/Button';
-import { Grid, useTheme, Link as StyledLink, TextField, IconButton } from '@material-ui/core';
-import { gql, useMutation } from '@apollo/client';
+import React, {useContext, useEffect, useState} from 'react';
+
+import UserContext from '../comps/auth/UserContext';
 import CardPreview from '../comps/ui/CardPreview';
-import { ArrowBackIos, ArrowForwardIos, MailOutline } from '@material-ui/icons';
+import styles from '../styles/Home.module.css';
 
 const THANKS_MUTATION = gql`
     mutation($letterId: ObjectId!, $message: String!) {
@@ -19,17 +26,18 @@ const THANKS_MUTATION = gql`
 `;
 
 export default function Home() {
-    const user = useContext(UserContext);
-    const theme = useTheme();
-    const [letterPointer, setLetterPointer] = useState(0);
-    const [thanksMessage, setThanksMessage] = useState('');
-    const [sendThanks, { data, loading }] = useMutation(THANKS_MUTATION);
+  const user = useContext(UserContext);
+  const theme = useTheme();
+  const [letterPointer, setLetterPointer] = useState(0);
+  const [thanksMessage, setThanksMessage] = useState('');
+  const [sendThanks, {data, loading}] = useMutation(THANKS_MUTATION);
 
-    useEffect(() => {
-        setThanksMessage(user.lettersReceived[letterPointer]?.thankYouMessage || '');
-    }, [letterPointer]);
+  useEffect(() => {
+    setThanksMessage(user.lettersReceived[letterPointer]?.thankYouMessage ||
+                     '');
+  }, [ letterPointer ]);
 
-    const letter = user.lettersReceived[letterPointer];
+  const letter = user.lettersReceived[letterPointer];
     return (
         <div className={styles.container}>
             <Head>
@@ -38,40 +46,31 @@ export default function Home() {
 
             <main className={styles.main}>
                 <h1
-                    className={styles.title}
-                    style={{ color: theme.palette.secondary.main, margin: '2rem', marginBottom: 0 }}
-                >
-                    Welcome back,{' '}
-                    <span style={{ color: theme.palette.primary.main }}>{user.firstName}</span>
+    className = {styles.title} style = {
+      { color: theme.palette.secondary.main, margin: '2rem', marginBottom: 0 }
+    } > Welcome back,
+    {' '}<span style = {{ color: theme.palette.primary.main }}>{
+        user.firstName}</span>
                 </h1>
-                <p style={{ textAlign: 'center' }}>
-                    Not {user.firstName}?{' '}
-                    <a
-                        href={'#'}
-                        style={{
-                            color: theme.palette.secondary.light,
-                            textDecoration: 'underline',
-                            marginTop: 0,
-                        }}
-                        onClick={() => window.localStorage.clear() & window.location.reload()}
-                    >
-                        Sign Out.
-                    </a>
+        <p style = {{ textAlign: 'center' }}>Not{user.firstName} ? {' '} < a
+    href = {'#'} style =
+    {
+      {
+        color: theme.palette.secondary.light, textDecoration: 'underline',
+            marginTop: 0,
+      }
+    } onClick = {() => window.localStorage.clear() & window.location.reload()} >
+                Sign Out.</a>
                 </p>
 
-                <Link href="/write-to/">
-                    <Button
-                        startIcon={<MailOutline />}
-                        color={'secondary'}
-                        variant={'outlined'}
-                    >
-                        Write A Letter!
-                    </Button>
+                <Link href = "/write-to/">< Button
+    startIcon = {
+      <MailOutline />
+    } color = {'secondary'} variant = {'outlined'} > Write A Letter!
+                                      </Button>
                 </Link>
 
-                <br />
-                <h2>Letters You've received:</h2>
-                {Boolean(letter) ? (<>
+                                      <br /><h2>Letters You've received:</h2> {Boolean(letter) ? (<>
                     <CardPreview
                         message={letter.message}
                         url={letter.template.resource.url}
