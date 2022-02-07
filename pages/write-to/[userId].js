@@ -1,24 +1,24 @@
-import {gql, useMutation, useQuery} from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import {
-  CircularProgress,
-  FormControlLabel,
-  Grid,
-  Switch,
-  TextField,
-  useTheme,
+    CircularProgress,
+    FormControlLabel,
+    Grid,
+    Switch,
+    TextField,
+    useTheme,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import {ArrowBackIos} from '@material-ui/icons';
+import { ArrowBackIos } from '@material-ui/icons';
 import Link from 'next/link';
-import {useRouter} from 'next/router';
-import React, {useEffect, useState} from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 import CardPreview from '../../comps/ui/CardPreview';
 
 import styles from './../../styles/Home.module.css';
 
 const USER_QUERY = gql`
-    query($userId: ObjectId!) {
+    query ($userId: ObjectId!) {
         userById(id: $userId) {
             id
             name
@@ -67,7 +67,7 @@ const USER_QUERY = gql`
 `;
 
 const SAVE_MUTATION = gql`
-    mutation($message: String!, $email: String!, $anonymous: Boolean!, $templateId: ObjectId!) {
+    mutation ($message: String!, $email: String!, $anonymous: Boolean!, $templateId: ObjectId!) {
         saveLetter(
             message: $message
             templateId: $templateId
@@ -80,7 +80,7 @@ const SAVE_MUTATION = gql`
 `;
 
 const DELETE_MUTATION = gql`
-    mutation($letterId: ObjectId!) {
+    mutation ($letterId: ObjectId!) {
         deleteLetter(letterId: $letterId)
     }
 `;
