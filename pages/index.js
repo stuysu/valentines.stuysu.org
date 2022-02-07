@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { Grid, useTheme, Link as StyledLink, TextField, IconButton } from '@material-ui/core';
 import { gql, useMutation } from '@apollo/client';
 import CardPreview from '../comps/ui/CardPreview';
-import { ArrowBackIos, ArrowForwardIos, MailOutline } from '@material-ui/icons';
+import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 
 const THANKS_MUTATION = gql`
     mutation($letterId: ObjectId!, $message: String!) {

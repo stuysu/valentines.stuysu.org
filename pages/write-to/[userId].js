@@ -286,7 +286,7 @@ const ViewMessage = () => {
     if (!data?.userById?.letterFromAuthenticatedUser) {
         return (
             <div className={styles.container}>
-                <main className={styles.main}>  
+                <main className={styles.main}>
                     <Link href={'/write-to'}>
                         <Button variant={'outlined'}>
                             <ArrowBackIos />
@@ -333,4 +333,4 @@ const ViewMessage = () => {
     );
 };
 
-export default ViewMessage;
+export default WriteToUser;
