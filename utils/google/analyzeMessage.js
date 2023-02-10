@@ -13,6 +13,7 @@ export default async function analyzeMessage(message) {
             comment: {
                 text: message,
             },
+			languages: ["en"],
             requestedAttributes: {
                 SEVERE_TOXICITY: {},
                 IDENTITY_ATTACK: {},
